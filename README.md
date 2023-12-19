@@ -4,7 +4,7 @@ This project contains the main features of the vanilla application.
 
 ## Documentation
 
-soon..
+- [Whitepaper](https://vanillaswap.gitbook.io/vanillaswap/)
 
 ## How to start
 
