@@ -1,14 +1,14 @@
 import type { ReactElement } from 'react'
 import type { NextPageWithLayout } from '@/pages/_app'
 import Layout from '@/components/Layout'
-import HomeView from '@/views/Home'
+import SwapView from '@/views/Swap'
 
-const Home: NextPageWithLayout = () => {
-  return <HomeView />
+const Swap: NextPageWithLayout = () => {
+  return <SwapView />
 }
 
-Home.getLayout = function getLayout(page: ReactElement) {
+Swap.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>
 }
 
-export default Home
+export default Swap
