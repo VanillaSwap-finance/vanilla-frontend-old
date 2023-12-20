@@ -1,7 +1,7 @@
 const HomeView: React.FC = () => {
   return (
     <>
-      <p>hoge</p>
+      <p>VanillaSwap</p>
     </>
   )
 }
