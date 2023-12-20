@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react'
 import type { NextPageWithLayout } from '@/pages/_app'
-import Header from '@/components/Layout/Header'
+import Layout from '@/components/Layout'
 import SwapView from '@/views/Swap'
 
 const Swap: NextPageWithLayout = () => {
@@ -8,12 +8,7 @@ const Swap: NextPageWithLayout = () => {
 }
 
 Swap.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <>
-      <Header />
-      {page}
-    </>
-  )
+  return <Layout>{page}</Layout>
 }
 
 export default Swap
