@@ -16,8 +16,12 @@ const Header: React.FC = () => {
           {APP_NAME}
         </Typography>
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          <Button color="inherit">Swap</Button>
-          <Button color="inherit">Liquidity</Button>
+          <Button color="inherit" href="/swap">
+            Swap
+          </Button>
+          <Button color="inherit" href="/liquidity">
+            Liquidity
+          </Button>
         </Box>
 
         <Box sx={{ flexGrow: 0 }}>
