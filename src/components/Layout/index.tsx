@@ -1,3 +1,4 @@
+import { Container } from '@mui/material'
 import Header from '@/components/Layout/Header'
 
 interface LayoutProps {
@@ -8,7 +9,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Header />
-      {children}
+      <Container maxWidth="lg" sx={{ pt: 10 }}>
+        {children}
+      </Container>
     </>
   )
 }
