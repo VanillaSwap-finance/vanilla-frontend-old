@@ -9,7 +9,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       <Header />
-      <Container maxWidth="md" sx={{ pt: 10 }}>
+      <Container maxWidth="lg" sx={{ pt: 10 }}>
         {children}
       </Container>
     </>

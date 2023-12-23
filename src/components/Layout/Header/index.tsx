@@ -46,8 +46,8 @@ const Header: React.FC = () => {
           <Button color="inherit" href="/swap">
             Swap
           </Button>
-          <Button color="inherit" href="/pool">
-            Pool
+          <Button color="inherit" href="/liquidity">
+            Liquidity
           </Button>
         </Box>
 
