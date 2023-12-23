@@ -6,6 +6,7 @@ import { Lato } from 'next/font/google'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { DefaultSeo } from 'next-seo'
 import { SEO } from '../../next-seo.config'
+import { AccountProvider } from '@/context/AccountContext'
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -33,7 +34,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   return (
     <>
       <DefaultSeo {...SEO} />
-      <ThemeProvider theme={theme}>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <AccountProvider>{getLayout(<Component {...pageProps} />)}</AccountProvider>
+      </ThemeProvider>
     </>
   )
 }

@@ -1,9 +1,36 @@
+import { useContext, useState } from 'react'
 import { APP_NAME } from '@/config/constants/site'
 import { AppBar, Box, Button, IconButton, Toolbar, Typography } from '@mui/material'
 import SettingsIcon from '@mui/icons-material/Settings'
 import TranslateIcon from '@mui/icons-material/Translate'
+import SelectWalletDialog from '@/components/Dialog/SelectWalletDialog'
+import ConnectedWalletButton from '@/components/Button/ConnectedWalletButton'
+import { AccountContext } from '@/context/AccountContext'
 
 const Header: React.FC = () => {
+  const [openSelectWalletDialog, setOpenSelectWalletDialog] = useState<boolean>(false)
+
+  const { account } = useContext(AccountContext)
+
+  const handleOpenSelectWalletDialog = () => {
+    setOpenSelectWalletDialog(true)
+  }
+
+  const handleCloseSelectWalletDialog = () => {
+    setOpenSelectWalletDialog(false)
+  }
+
+  const SelectWalletButton = () => {
+    return (
+      <>
+        <Button color="inherit" onClick={handleOpenSelectWalletDialog}>
+          Connect Wallet
+        </Button>
+        <SelectWalletDialog open={openSelectWalletDialog} onClose={handleCloseSelectWalletDialog} />
+      </>
+    )
+  }
+
   return (
     <AppBar
       elevation={0}
@@ -19,8 +46,8 @@ const Header: React.FC = () => {
           <Button color="inherit" href="/swap">
             Swap
           </Button>
-          <Button color="inherit" href="/liquidity">
-            Liquidity
+          <Button color="inherit" href="/pool">
+            Pool
           </Button>
         </Box>
 
@@ -31,7 +58,7 @@ const Header: React.FC = () => {
           <IconButton color="inherit">
             <SettingsIcon />
           </IconButton>
-          <Button color="inherit">Connect Wallet</Button>
+          {account.isConnected ? <ConnectedWalletButton address={account.address || ''} /> : <SelectWalletButton />}
         </Box>
       </Toolbar>
     </AppBar>

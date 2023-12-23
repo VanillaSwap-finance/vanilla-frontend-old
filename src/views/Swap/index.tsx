@@ -1,11 +1,13 @@
 import {
   Box,
+  Breadcrumbs,
   Button,
   Card,
   CardActions,
   CardContent,
   Divider,
   IconButton,
+  Link,
   TextField,
   Typography,
   Unstable_Grid2 as Grid,
@@ -18,10 +20,15 @@ import TuneIcon from '@mui/icons-material/Tune'
 
 const SwapView: React.FC = () => {
   return (
-    <Box sx={{ height: 2000 }}>
-      <p>VanillaSwap</p>
+    <Box>
+      <Breadcrumbs sx={{ mb: 4 }}>
+        <Link underline="hover" color="inherit" href="/">
+          Home
+        </Link>
+        <Typography color="text.primary">Swap</Typography>
+      </Breadcrumbs>
       <Grid container spacing={2} justifyContent="center">
-        <Grid xs={5}>
+        <Grid xs={6}>
           <Card sx={{ p: 1 }}>
             <CardContent>
               <Box>
@@ -51,10 +58,10 @@ const SwapView: React.FC = () => {
                   </Button>
                   <TextField variant="outlined" fullWidth />
                 </Box>
-                <IconButton sx={{ mt: 2 }}>
+                <IconButton sx={{ mt: 1 }}>
                   <SyncIcon />
                 </IconButton>
-                <Box textAlign="left" sx={{ my: 1 }}>
+                <Box textAlign="left" sx={{ mb: 1 }}>
                   <Button size="small" sx={{ color: 'black' }} endIcon={<ArrowDropDownIcon sx={{ color: 'bkack' }} />}>
                     BTC
                   </Button>
