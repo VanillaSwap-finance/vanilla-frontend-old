@@ -8,15 +8,14 @@ import {
   Divider,
   IconButton,
   Link,
-  TextField,
   Typography,
   Unstable_Grid2 as Grid,
 } from '@mui/material'
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import HistoryIcon from '@mui/icons-material/History'
 import RefreshIcon from '@mui/icons-material/Refresh'
 import SyncIcon from '@mui/icons-material/Sync'
 import TuneIcon from '@mui/icons-material/Tune'
+import TokenInput from '@/views/Swap/components/TokenInput'
 
 const SwapView: React.FC = () => {
   return (
@@ -53,19 +52,13 @@ const SwapView: React.FC = () => {
               </Box>
               <Box textAlign="center">
                 <Box textAlign="left" sx={{ my: 1 }}>
-                  <Button size="small" sx={{ color: 'black' }} endIcon={<ArrowDropDownIcon sx={{ color: 'bkack' }} />}>
-                    XRP
-                  </Button>
-                  <TextField variant="outlined" fullWidth />
+                  <TokenInput defaultCurrency="XRP" />
                 </Box>
                 <IconButton sx={{ mt: 1 }}>
                   <SyncIcon />
                 </IconButton>
                 <Box textAlign="left" sx={{ mb: 1 }}>
-                  <Button size="small" sx={{ color: 'black' }} endIcon={<ArrowDropDownIcon sx={{ color: 'bkack' }} />}>
-                    BTC
-                  </Button>
-                  <TextField variant="outlined" fullWidth />
+                  <TokenInput defaultCurrency="BTC" />
                 </Box>
               </Box>
             </CardContent>
