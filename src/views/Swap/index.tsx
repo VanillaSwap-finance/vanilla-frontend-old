@@ -13,9 +13,8 @@ import {
 } from '@mui/material'
 import HistoryIcon from '@mui/icons-material/History'
 import RefreshIcon from '@mui/icons-material/Refresh'
-import SyncIcon from '@mui/icons-material/Sync'
 import TuneIcon from '@mui/icons-material/Tune'
-import TokenInput from '@/views/Swap/components/TokenInput'
+import SwapForm from '@/views/Swap/components/SwapForm'
 
 const SwapView: React.FC = () => {
   return (
@@ -50,17 +49,7 @@ const SwapView: React.FC = () => {
                   <RefreshIcon />
                 </IconButton>
               </Box>
-              <Box textAlign="center">
-                <Box textAlign="left" sx={{ my: 1 }}>
-                  <TokenInput defaultCurrency="XRP" />
-                </Box>
-                <IconButton sx={{ mt: 1 }}>
-                  <SyncIcon />
-                </IconButton>
-                <Box textAlign="left" sx={{ mb: 1 }}>
-                  <TokenInput defaultCurrency="BTC" />
-                </Box>
-              </Box>
+              <SwapForm />
             </CardContent>
             <CardActions>
               <Button variant="contained" size="large" fullWidth disableElevation sx={{ mx: 1 }}>
