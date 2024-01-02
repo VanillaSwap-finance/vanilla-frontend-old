@@ -21,10 +21,13 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.1",
     "@mui/material": "^5.15.1",
+    "ethers": "^6.9.1",
     "next": "14.0.4",
     "next-seo": "^6.4.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "ripple-binary-codec": "^1.11.0",
+    "xrpl": "^2.14.0"
   },
   "devDependencies": {
     "@types/node": "^20",
