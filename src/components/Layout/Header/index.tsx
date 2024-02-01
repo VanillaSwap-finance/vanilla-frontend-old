@@ -49,6 +49,9 @@ const Header: React.FC = () => {
           <Button color="inherit" href="/liquidity">
             Liquidity
           </Button>
+          <Button color="inherit" href="/transfer">
+            Transfer
+          </Button>
         </Box>
 
         <Box sx={{ flexGrow: 0 }}>
