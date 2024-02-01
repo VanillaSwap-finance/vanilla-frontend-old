@@ -1,5 +1,6 @@
 import { Box, Button, Dialog, DialogTitle, DialogContent } from '@mui/material'
-import useWalletConnect, { WALLET_TAG } from '@/hooks/useWalletConnect'
+import useWalletConnect from '@/hooks/useWalletConnect'
+import { WALLETS } from '@/context/AccountContext'
 
 export interface SelectWalletDialogProps {
   open: boolean
@@ -9,7 +10,7 @@ export interface SelectWalletDialogProps {
 const SelectWalletDialog = ({ open, onClose }: SelectWalletDialogProps) => {
   const { connect } = useWalletConnect()
 
-  const handleConnectWallet = async (walletTag: WALLET_TAG) => {
+  const handleConnectWallet = async (walletTag: WALLETS) => {
     await connect(walletTag)
     onClose()
   }
@@ -27,7 +28,7 @@ const SelectWalletDialog = ({ open, onClose }: SelectWalletDialogProps) => {
             fullWidth
             disableElevation
             sx={{ mb: 1 }}
-            onClick={() => handleConnectWallet(WALLET_TAG.CROSSMARK)}
+            onClick={() => handleConnectWallet(WALLETS.CROSSMARK)}
           >
             Crossmark
           </Button>

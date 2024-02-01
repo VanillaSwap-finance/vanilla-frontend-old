@@ -1,17 +1,14 @@
 import { useContext } from 'react'
 import crossmark from '@crossmarkio/sdk'
 import { AccountContext } from '@/context/AccountContext'
-
-export enum WALLET_TAG {
-  CROSSMARK = 'CROSSMARK',
-}
+import { WALLETS } from '@/context/AccountContext'
 
 const useWalletConnect = () => {
   const { setAccount } = useContext(AccountContext)
 
-  const connect = async (walletTag: WALLET_TAG) => {
+  const connect = async (walletTag: WALLETS) => {
     switch (walletTag) {
-      case WALLET_TAG.CROSSMARK: {
+      case WALLETS.CROSSMARK: {
         const { response } = await crossmark.signInAndWait()
 
         if (response.data.meta.isSuccess) {
@@ -22,6 +19,8 @@ const useWalletConnect = () => {
         setAccount({
           address: response.data.address,
           isConnected: true,
+          wallet: WALLETS.CROSSMARK,
+          network: response.data.network.type,
         })
         break
       }
