@@ -5,6 +5,7 @@ import SettingsIcon from '@mui/icons-material/Settings'
 import TranslateIcon from '@mui/icons-material/Translate'
 import SelectWalletDialog from '@/components/Dialog/SelectWalletDialog'
 import ConnectedWalletButton from '@/components/Button/ConnectedWalletButton'
+import ChangeNetworkButton from '@/components/Button/ChangeNetworkButton'
 import { AccountContext } from '@/context/AccountContext'
 
 const Header: React.FC = () => {
@@ -61,6 +62,7 @@ const Header: React.FC = () => {
           <IconButton color="inherit">
             <SettingsIcon />
           </IconButton>
+          {account.isConnected && <ChangeNetworkButton />}
           {account.isConnected ? <ConnectedWalletButton address={account.address || ''} /> : <SelectWalletButton />}
         </Box>
       </Toolbar>
