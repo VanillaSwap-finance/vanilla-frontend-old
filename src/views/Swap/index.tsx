@@ -1,13 +1,11 @@
 import {
   Box,
-  Breadcrumbs,
   Button,
   Card,
   CardActions,
   CardContent,
   Divider,
   IconButton,
-  Link,
   Typography,
   Unstable_Grid2 as Grid,
 } from '@mui/material'
@@ -16,16 +14,24 @@ import RefreshIcon from '@mui/icons-material/Refresh'
 import SyncIcon from '@mui/icons-material/Sync'
 import TuneIcon from '@mui/icons-material/Tune'
 import TokenInput from '@/views/Swap/components/TokenInput'
+import CustomBreadcrumbs from '@/components/CustomBreadcrumbs'
+import PageTitle from '@/components/PageTitle'
+import PageSubTitle from '@/components/PageSubTitle'
+
+const breadcrumbs = [
+  { title: 'Home', path: '/' },
+  { title: 'Swap', path: '' },
+]
 
 const SwapView: React.FC = () => {
   return (
     <Box>
-      <Breadcrumbs sx={{ mb: 4 }}>
-        <Link underline="hover" color="inherit" href="/">
-          Home
-        </Link>
-        <Typography color="text.primary">Swap</Typography>
-      </Breadcrumbs>
+      <CustomBreadcrumbs breadcrumbs={breadcrumbs} />
+      <Box sx={{ mt: 2, mb: 3 }}>
+        <PageTitle title="Swap" />
+        <PageSubTitle subtitle="Trade tokens in an instant." />
+      </Box>
+
       <Grid container spacing={2} justifyContent="center">
         <Grid xs={6}>
           <Card sx={{ p: 1 }}>

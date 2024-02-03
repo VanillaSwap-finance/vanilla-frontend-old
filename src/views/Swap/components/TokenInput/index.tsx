@@ -22,7 +22,13 @@ const TokenInput: React.FC<TokenInputProps> = ({ defaultCurrency }) => {
     <>
       <SelectTokenButton currency={defaultCurrency} onClick={handleOpen} />
       <SelectTokenDialog open={open} onClose={handleClose} />
-      <TextField variant="outlined" fullWidth />
+      <TextField
+        variant="outlined"
+        fullWidth
+        inputProps={{
+          readOnly: true,
+        }}
+      />
     </>
   )
 }

@@ -1,14 +1,12 @@
-import {
-  Box,
-  Breadcrumbs,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  Link,
-  Typography,
-  Unstable_Grid2 as Grid,
-} from '@mui/material'
+import { Box, Button, Card, CardActions, CardContent, Unstable_Grid2 as Grid } from '@mui/material'
+import CustomBreadcrumbs from '@/components/CustomBreadcrumbs'
+import PageTitle from '@/components/PageTitle'
+import PageSubTitle from '@/components/PageSubTitle'
+
+const breadcrumbs = [
+  { title: 'Home', path: '/' },
+  { title: 'Liquidity', path: '/' },
+]
 
 const LiquidityView = () => {
   const LiquidityCard = () => {
@@ -28,25 +26,15 @@ const LiquidityView = () => {
 
   return (
     <Box>
-      <Box>
-        <Breadcrumbs>
-          <Link underline="hover" color="inherit" href="/">
-            Home
-          </Link>
-          <Typography color="text.primary">Liquidity</Typography>
-        </Breadcrumbs>
-      </Box>
+      <CustomBreadcrumbs breadcrumbs={breadcrumbs} />
       <Box sx={{ mt: 2, mb: 3 }}>
-        <Typography variant="h4" sx={{ fontWeight: 'bold' }}>
-          Liquidity pools
-        </Typography>
-        <Typography variant="body1" sx={{ mt: 1 }} color="gray">
-          Provide liquidity and get a share of swap fees
-        </Typography>
+        <PageTitle title="Liquidity pools" />
+        <PageSubTitle subtitle="Provide liquidity and get a share of swap fees." />
+        <Button variant="contained" disableElevation href="/liquidity/create">
+          Create
+        </Button>
       </Box>
-      <Grid container spacing={2}>
-        <Grid>hoge</Grid>
-      </Grid>
+
       <Grid container spacing={2}>
         <Grid xs={12}>Menu</Grid>
         {[...Array(10)].map((_, i) => (
