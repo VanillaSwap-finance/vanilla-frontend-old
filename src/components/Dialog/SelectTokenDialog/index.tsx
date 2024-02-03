@@ -18,14 +18,26 @@ const SelectTokenDialog: React.FC<SelectTokenDialogProps> = ({ open, onClose, se
     onClose()
   }
 
+  const selectedETH = () => {
+    setAsset({
+      currency: 'ETH',
+      issuer: 'rraEoyB1ZF3RKj8gwsB4SHaGJ7WKskBxkd',
+      value: null,
+    })
+    onClose()
+  }
+
   return (
     <Dialog open={open} onClose={onClose}>
       <DialogTitle>Select a Token</DialogTitle>
       <Divider />
       <DialogContent>
         <Box sx={{ mb: 2 }}>
-          <Button variant="outlined" onClick={selectedXRP}>
+          <Button variant="outlined" sx={{ mr: 1 }} onClick={selectedXRP}>
             XRP
+          </Button>
+          <Button variant="outlined" onClick={selectedETH}>
+            ETH
           </Button>
         </Box>
         <Box sx={{ mt: 1 }}>

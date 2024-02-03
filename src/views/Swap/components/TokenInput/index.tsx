@@ -1,6 +1,5 @@
 import { useState, Dispatch, SetStateAction } from 'react'
 import { TextField } from '@mui/material'
-import SelectTokenButton from '@/components/Button/SelectTokenButton'
 import SelectTokenDialog from '@/components/Dialog/SelectTokenDialog'
 import type { Asset } from '@/types'
 
@@ -22,7 +21,6 @@ const TokenInput: React.FC<TokenInputProps> = ({ asset, setAsset }) => {
 
   return (
     <>
-      <SelectTokenButton currency={asset.currency || 'XRP'} onClick={handleOpen} />
       <SelectTokenDialog open={open} onClose={handleClose} setAsset={setAsset} />
       <TextField
         variant="outlined"
@@ -34,6 +32,7 @@ const TokenInput: React.FC<TokenInputProps> = ({ asset, setAsset }) => {
         sx={{
           cursor: 'pointer',
         }}
+        helperText={asset.issuer ? `Issue address: ${asset.issuer}` : ''}
         onClick={handleOpen}
       />
     </>

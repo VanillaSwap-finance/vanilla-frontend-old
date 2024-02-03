@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
   Box,
   Button,
@@ -7,6 +7,7 @@ import {
   CardContent,
   Divider,
   Stack,
+  TextField,
   Typography,
   Unstable_Grid2 as Grid,
 } from '@mui/material'
@@ -15,6 +16,7 @@ import PageTitle from '@/components/PageTitle'
 import PageSubTitle from '@/components/PageSubTitle'
 import AddIcon from '@mui/icons-material/Add'
 import TokenInput from '@/views/Swap/components/TokenInput'
+// import useAccountLines from '@/hooks/useAccountLines'
 import type { Asset } from '@/types'
 
 const breadcrumbs = [
@@ -24,16 +26,22 @@ const breadcrumbs = [
 ]
 
 const LiquidityCreateView: React.FC = () => {
+  // const { request } = useAccountLines()
+
   const [baseAsset, setBaseAsset] = useState<Asset>({
     currency: 'XRP',
     issuer: null,
     value: null,
   })
   const [quoteAsset, setQuoteAsset] = useState<Asset>({
-    currency: 'BTC',
+    currency: 'XRP',
     issuer: null,
     value: null,
   })
+
+  useEffect(() => {
+    //
+  }, [baseAsset, quoteAsset])
 
   return (
     <Box>
@@ -44,7 +52,7 @@ const LiquidityCreateView: React.FC = () => {
       </Box>
 
       <Grid container spacing={2} justifyContent="center">
-        <Grid xs={6}>
+        <Grid xs={7}>
           <Card variant="outlined">
             <CardContent>
               <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
@@ -52,16 +60,28 @@ const LiquidityCreateView: React.FC = () => {
               </Typography>
 
               <Stack direction="row" spacing={{ xs: 1, sm: 2 }}>
-                <Box textAlign="left">
-                  <TokenInput asset={baseAsset} setAsset={setBaseAsset} />
-                </Box>
-                <Box sx={{ pt: 6 }}>
+                <TokenInput asset={baseAsset} setAsset={setBaseAsset} />
+                <Box sx={{ pt: 2 }}>
                   <AddIcon />
                 </Box>
-                <Box textAlign="left">
-                  <TokenInput asset={quoteAsset} setAsset={setQuoteAsset} />
-                </Box>
+                <TokenInput asset={quoteAsset} setAsset={setQuoteAsset} />
               </Stack>
+            </CardContent>
+            <Divider />
+            <CardContent>
+              <TextField
+                fullWidth
+                label="Amount"
+                placeholder="0.0"
+                InputProps={{ endAdornment: baseAsset.currency }}
+                sx={{ mb: 2 }}
+              />
+              <TextField
+                fullWidth
+                label="Amount"
+                placeholder="0.0"
+                InputProps={{ endAdornment: quoteAsset.currency }}
+              />
             </CardContent>
             <Divider />
             <CardActions sx={{ p: 2 }}>
