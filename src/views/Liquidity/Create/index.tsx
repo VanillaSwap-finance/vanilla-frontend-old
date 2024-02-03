@@ -35,7 +35,7 @@ const LiquidityCreateView: React.FC = () => {
           <Card variant="outlined">
             <CardContent>
               <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
-                Choose token pair
+                Select token pair
               </Typography>
 
               <Stack direction="row" spacing={{ xs: 1, sm: 2 }}>

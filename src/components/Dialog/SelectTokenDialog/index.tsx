@@ -1,4 +1,4 @@
-import { Box, Dialog, DialogTitle, DialogContent, Divider, TextField, Typography } from '@mui/material'
+import { Box, Button, Dialog, DialogActions, DialogTitle, DialogContent, Divider, TextField } from '@mui/material'
 
 interface SelectTokenDialogProps {
   open: boolean
@@ -11,14 +11,20 @@ const SelectTokenDialog: React.FC<SelectTokenDialogProps> = ({ open, onClose }) 
       <DialogTitle>Select a Token</DialogTitle>
       <Divider />
       <DialogContent>
-        <Box sx={{ mt: 1, mb: 3 }}>
+        <Box sx={{ mb: 2 }}>
+          <Button variant="outlined">XRP</Button>
+        </Box>
+        <Box sx={{ mt: 1 }}>
           <TextField size="small" label="Symbol" fullWidth sx={{ mb: 2 }} />
           <TextField size="small" label="Issuer address" fullWidth />
         </Box>
-        <Box sx={{ mx: 0.5 }}>
-          <Typography variant="body2">Common tokens</Typography>
-        </Box>
       </DialogContent>
+      <Divider />
+      <DialogActions sx={{ p: 2 }}>
+        <Button variant="contained" size="large" disableElevation fullWidth>
+          Select
+        </Button>
+      </DialogActions>
     </Dialog>
   )
 }

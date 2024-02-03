@@ -28,6 +28,10 @@ const TokenInput: React.FC<TokenInputProps> = ({ defaultCurrency }) => {
         inputProps={{
           readOnly: true,
         }}
+        sx={{
+          cursor: 'pointer',
+        }}
+        onClick={handleOpen}
       />
     </>
   )
