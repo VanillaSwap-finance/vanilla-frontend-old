@@ -13,6 +13,8 @@ const useNetworkSwitch = () => {
         setAccount({
           ...account,
           network: network.type,
+          wss: network.wss,
+          rpc: network.rpc,
         })
       },
     )

@@ -14,6 +14,8 @@ export interface Account {
   isConnected: boolean
   wallet: WALLETS
   network?: string | null
+  wss: string | null
+  rpc: string | null
 }
 
 interface AccountContextType {
@@ -28,6 +30,8 @@ export const AccountContext = createContext<AccountContextType>({
     isConnected: false,
     wallet: WALLETS.NO_CONNECTION,
     network: null,
+    wss: null,
+    rpc: null,
   },
   setAccount: () => {},
 })
@@ -48,6 +52,8 @@ export const AccountProvider = ({ children }: AccountContextProps) => {
     isConnected: false,
     wallet: WALLETS.NO_CONNECTION,
     network: null,
+    wss: null,
+    rpc: null,
   })
 
   const value = useMemo(

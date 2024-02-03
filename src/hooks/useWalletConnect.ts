@@ -21,6 +21,8 @@ const useWalletConnect = () => {
           isConnected: true,
           wallet: WALLETS.CROSSMARK,
           network: response.data.network.type,
+          wss: response.data.network.wss,
+          rpc: response.data.network.rpc,
         })
         break
       }

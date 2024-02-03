@@ -45,6 +45,9 @@ const LiquidityView = () => {
         </Typography>
       </Box>
       <Grid container spacing={2}>
+        <Grid>hoge</Grid>
+      </Grid>
+      <Grid container spacing={2}>
         <Grid xs={12}>Menu</Grid>
         {[...Array(10)].map((_, i) => (
           <LiquidityCard key={i} />
