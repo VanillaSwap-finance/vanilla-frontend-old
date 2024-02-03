@@ -10,7 +10,7 @@ interface SelectTokenButtonProps {
 const SelectTokenButton: React.FC<SelectTokenButtonProps> = ({ currency, onClick }) => {
   return (
     <Button
-      size="small"
+      size="large"
       sx={{ color: 'black' }}
       onClick={() => onClick()}
       endIcon={<ArrowDropDownIcon sx={{ color: 'bkack' }} />}

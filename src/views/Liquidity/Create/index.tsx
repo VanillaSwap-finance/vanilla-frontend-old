@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Box,
   Button,
@@ -14,6 +15,7 @@ import PageTitle from '@/components/PageTitle'
 import PageSubTitle from '@/components/PageSubTitle'
 import AddIcon from '@mui/icons-material/Add'
 import TokenInput from '@/views/Swap/components/TokenInput'
+import type { Asset } from '@/types'
 
 const breadcrumbs = [
   { title: 'Home', path: '/' },
@@ -22,6 +24,17 @@ const breadcrumbs = [
 ]
 
 const LiquidityCreateView: React.FC = () => {
+  const [baseAsset, setBaseAsset] = useState<Asset>({
+    currency: 'XRP',
+    issuer: null,
+    value: null,
+  })
+  const [quoteAsset, setQuoteAsset] = useState<Asset>({
+    currency: 'BTC',
+    issuer: null,
+    value: null,
+  })
+
   return (
     <Box>
       <CustomBreadcrumbs breadcrumbs={breadcrumbs} />
@@ -40,13 +53,13 @@ const LiquidityCreateView: React.FC = () => {
 
               <Stack direction="row" spacing={{ xs: 1, sm: 2 }}>
                 <Box textAlign="left">
-                  <TokenInput defaultCurrency="XRP" />
+                  <TokenInput asset={baseAsset} setAsset={setBaseAsset} />
                 </Box>
                 <Box sx={{ pt: 6 }}>
                   <AddIcon />
                 </Box>
                 <Box textAlign="left">
-                  <TokenInput defaultCurrency="BTC" />
+                  <TokenInput asset={quoteAsset} setAsset={setQuoteAsset} />
                 </Box>
               </Stack>
             </CardContent>
