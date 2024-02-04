@@ -69,6 +69,9 @@ const LiquidityCreateView: React.FC = () => {
               <Typography gutterBottom variant="h5" component="div" sx={{ fontWeight: 'bold' }}>
                 Select token pair
               </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                Select the token pair you want to provide liquidity for.
+              </Typography>
 
               <Stack direction="row" spacing={{ xs: 1, sm: 2 }}>
                 <TokenInput asset={baseAsset} setAsset={setBaseAsset} />

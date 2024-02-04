@@ -1,5 +1,19 @@
 import { Dispatch, SetStateAction } from 'react'
-import { Box, Button, Dialog, DialogActions, DialogTitle, DialogContent, Divider, TextField } from '@mui/material'
+import {
+  Avatar,
+  Box,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Divider,
+  List,
+  ListItemAvatar,
+  ListItemText,
+  ListItem,
+} from '@mui/material'
+import ImageIcon from '@mui/icons-material/Image'
+import { tokens } from '@/config/tokens'
 import type { Asset } from '@/types'
 
 interface SelectTokenDialogProps {
@@ -18,10 +32,10 @@ const SelectTokenDialog: React.FC<SelectTokenDialogProps> = ({ open, onClose, se
     onClose()
   }
 
-  const selectedETH = () => {
+  const selectedToken = ({ currency, issuer }: { currency: string; issuer: string }) => {
     setAsset({
-      currency: 'ETH',
-      issuer: 'rraEoyB1ZF3RKj8gwsB4SHaGJ7WKskBxkd',
+      currency,
+      issuer,
       value: null,
     })
     onClose()
@@ -36,21 +50,27 @@ const SelectTokenDialog: React.FC<SelectTokenDialogProps> = ({ open, onClose, se
           <Button variant="outlined" sx={{ mr: 1 }} onClick={selectedXRP}>
             XRP
           </Button>
-          <Button variant="outlined" onClick={selectedETH}>
-            ETH
-          </Button>
         </Box>
         <Box sx={{ mt: 1 }}>
-          <TextField size="small" label="Symbol" fullWidth sx={{ mb: 2 }} />
-          <TextField size="small" label="Issuer address" fullWidth />
+          <List>
+            {tokens.map((token) => (
+              <ListItem
+                key={`${token.currency}-${token.issuer}`}
+                sx={{ cursor: 'pointer' }}
+                onClick={() => selectedToken(token)}
+              >
+                <ListItemAvatar>
+                  <Avatar>
+                    <ImageIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <ListItemText primary={token.currency} secondary={`Issuer: ${token.issuer}`} />
+              </ListItem>
+            ))}
+          </List>
         </Box>
       </DialogContent>
       <Divider />
-      <DialogActions sx={{ p: 2 }}>
-        <Button variant="contained" size="large" disableElevation fullWidth>
-          Select
-        </Button>
-      </DialogActions>
     </Dialog>
   )
 }
