@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { Box, Button, Card, CardActions, CardContent, Unstable_Grid2 as Grid } from '@mui/material'
 import CustomBreadcrumbs from '@/components/CustomBreadcrumbs'
 import PageTitle from '@/components/PageTitle'
@@ -9,6 +10,8 @@ const breadcrumbs = [
 ]
 
 const LiquidityView = () => {
+  const router = useRouter()
+
   const LiquidityCard = () => {
     return (
       <Grid xs={4}>
@@ -30,7 +33,7 @@ const LiquidityView = () => {
       <Box sx={{ mt: 2, mb: 3 }}>
         <PageTitle title="Liquidity pools" />
         <PageSubTitle subtitle="Provide liquidity and get a share of swap fees." />
-        <Button variant="contained" disableElevation href="/liquidity/create">
+        <Button variant="contained" disableElevation onClick={() => router.push('/liquidity/create')}>
           Create
         </Button>
       </Box>

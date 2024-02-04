@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { Box, Breadcrumbs, Link, Typography } from '@mui/material'
 
 interface CustomBreadcrumbsProps {
@@ -6,6 +7,8 @@ interface CustomBreadcrumbsProps {
 }
 
 const CustomBreadcrumbs: React.FC<CustomBreadcrumbsProps> = ({ breadcrumbs }) => {
+  const router = useRouter()
+
   return (
     <Box>
       <Breadcrumbs>
@@ -16,7 +19,13 @@ const CustomBreadcrumbs: React.FC<CustomBreadcrumbsProps> = ({ breadcrumbs }) =>
               {crumb.title}
             </Typography>
           ) : (
-            <Link underline="hover" color="inherit" href={crumb.path} key={index}>
+            <Link
+              underline="hover"
+              color="inherit"
+              key={index}
+              onClick={() => router.push(crumb.path)}
+              sx={{ cursor: 'pointer' }}
+            >
               {crumb.title}
             </Link>
           )

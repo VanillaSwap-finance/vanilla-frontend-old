@@ -16,7 +16,7 @@ import PageTitle from '@/components/PageTitle'
 import PageSubTitle from '@/components/PageSubTitle'
 import AddIcon from '@mui/icons-material/Add'
 import TokenInput from '@/views/Swap/components/TokenInput'
-// import useAccountLines from '@/hooks/useAccountLines'
+import useAccountLines from '@/hooks/useAccountLines'
 import type { Asset } from '@/types'
 
 const breadcrumbs = [
@@ -26,7 +26,7 @@ const breadcrumbs = [
 ]
 
 const LiquidityCreateView: React.FC = () => {
-  // const { request } = useAccountLines()
+  const { request } = useAccountLines()
 
   const [baseAsset, setBaseAsset] = useState<Asset>({
     currency: 'XRP',
@@ -40,8 +40,8 @@ const LiquidityCreateView: React.FC = () => {
   })
 
   useEffect(() => {
-    //
-  }, [baseAsset, quoteAsset])
+    request()
+  }, [])
 
   return (
     <Box>

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Box,
   Button,
@@ -17,6 +18,7 @@ import TokenInput from '@/views/Swap/components/TokenInput'
 import CustomBreadcrumbs from '@/components/CustomBreadcrumbs'
 import PageTitle from '@/components/PageTitle'
 import PageSubTitle from '@/components/PageSubTitle'
+import type { Asset } from '@/types'
 
 const breadcrumbs = [
   { title: 'Home', path: '/' },
@@ -24,6 +26,17 @@ const breadcrumbs = [
 ]
 
 const SwapView: React.FC = () => {
+  const [baseAsset, setBaseAsset] = useState<Asset>({
+    currency: 'XRP',
+    issuer: null,
+    value: null,
+  })
+  const [quoteAsset, setQuoteAsset] = useState<Asset>({
+    currency: 'XRP',
+    issuer: null,
+    value: null,
+  })
+
   return (
     <Box>
       <CustomBreadcrumbs breadcrumbs={breadcrumbs} />
@@ -58,13 +71,13 @@ const SwapView: React.FC = () => {
               </Box>
               <Box textAlign="center">
                 <Box textAlign="left" sx={{ my: 1 }}>
-                  <TokenInput defaultCurrency="XRP" />
+                  <TokenInput asset={baseAsset} setAsset={setBaseAsset} />
                 </Box>
                 <IconButton sx={{ mt: 1 }}>
                   <SyncIcon />
                 </IconButton>
                 <Box textAlign="left" sx={{ mb: 1 }}>
-                  <TokenInput defaultCurrency="BTC" />
+                  <TokenInput asset={quoteAsset} setAsset={setQuoteAsset} />
                 </Box>
               </Box>
             </CardContent>
