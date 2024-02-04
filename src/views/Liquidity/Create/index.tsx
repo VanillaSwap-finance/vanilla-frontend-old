@@ -16,7 +16,7 @@ import PageTitle from '@/components/PageTitle'
 import PageSubTitle from '@/components/PageSubTitle'
 import AddIcon from '@mui/icons-material/Add'
 import TokenInput from '@/views/Swap/components/TokenInput'
-import useAccountLines from '@/hooks/useAccountLines'
+import useAccountLines from '@/hooks/useBalance'
 import type { Asset } from '@/types'
 
 const breadcrumbs = [
@@ -26,7 +26,7 @@ const breadcrumbs = [
 ]
 
 const LiquidityCreateView: React.FC = () => {
-  const { request } = useAccountLines()
+  const { request, data } = useAccountLines()
 
   const [baseAsset, setBaseAsset] = useState<Asset>({
     currency: 'XRP',
@@ -42,6 +42,17 @@ const LiquidityCreateView: React.FC = () => {
   useEffect(() => {
     request()
   }, [])
+
+  useEffect(() => {
+    for (const balance of data) {
+      if (baseAsset.currency === balance.currency) {
+        setBaseAsset({ ...baseAsset, value: balance.value, issuer: balance.issuer ?? null })
+      }
+      if (quoteAsset.currency === balance.currency) {
+        setQuoteAsset({ ...quoteAsset, value: balance.value, issuer: balance.issuer ?? null })
+      }
+    }
+  }, [data, baseAsset, quoteAsset])
 
   return (
     <Box>
@@ -74,12 +85,14 @@ const LiquidityCreateView: React.FC = () => {
                 label="Amount"
                 placeholder="0.0"
                 InputProps={{ endAdornment: baseAsset.currency }}
+                helperText={`Balance: ${baseAsset.value || 0}`}
                 sx={{ mb: 2 }}
               />
               <TextField
                 fullWidth
                 label="Amount"
                 placeholder="0.0"
+                helperText={`Balance: ${quoteAsset.value || 0}`}
                 InputProps={{ endAdornment: quoteAsset.currency }}
               />
             </CardContent>

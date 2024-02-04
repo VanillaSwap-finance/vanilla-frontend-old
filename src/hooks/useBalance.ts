@@ -1,14 +1,13 @@
 import { useContext, useState } from 'react'
 import { Client } from 'xrpl'
 import { AccountContext } from '@/context/AccountContext'
-import type { AccountLinesRequest, AccountLinesResponse } from 'xrpl'
 
-const useAccountLines = () => {
+const useBalance = () => {
   const { account } = useContext(AccountContext)
+  const [data, setData] = useState<{ currency: string; issuer: string | undefined; value: string }[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const request = async () => {
-    let response: AccountLinesResponse | undefined = undefined
     setIsLoading(true)
 
     try {
@@ -22,13 +21,18 @@ const useAccountLines = () => {
       const client = new Client(account.wss)
       await client.connect()
 
-      const params: AccountLinesRequest = {
-        command: 'account_lines',
-        account: account.address,
-      }
+      const response = await client.getBalances(account.address)
+      const balances = response
+        .filter((data) => data.value !== '0')
+        .map((data) => {
+          return {
+            currency: data.currency,
+            issuer: data.currency === 'XRP' ? '' : data.issuer,
+            value: data.value,
+          }
+        })
 
-      response = await client.request(params)
-      console.log('レスポンス: ', response)
+      setData(balances)
 
       client.disconnect()
     } catch (error: unknown) {
@@ -43,9 +47,10 @@ const useAccountLines = () => {
   }
 
   return {
+    data,
     request,
     isLoading,
   }
 }
 
-export default useAccountLines
+export default useBalance
